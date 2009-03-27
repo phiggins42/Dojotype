@@ -1,0 +1,1 @@
+dojo.provide("dojotype._base.Function");

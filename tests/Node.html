@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+	"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<title>Testing dojo.fx</title>
+		<script type="text/javascript" src="../../dojo/dojo.js" djConfig="isDebug: true"></script>
+		<script type="text/javascript" src="../base.js"></script>
+		<script type="text/javascript">
+			dojo.require("doh.runner");
+
+			dojo.addOnLoad(function(){
+				var $$ = dojo.node;
+				doh.register("t", 
+					[
+						function basic(t){
+							var n = $$("bar");
+							n.innerHTML = "<p>hi!</p>";
+							n.attr("id", "foo");
+							t.is(dojo.query("#foo p").length, 1);
+						},
+						
+						function basic2(t){
+							$$(dojo.create("div")).place(dojo.body()).attr("id", "newId");
+							t.is(1, dojo.query("#newId").length);
+						},
+						
+						function anim(t){
+							$$(dojo.place("<p>yo!</p>", dojo.body()))
+								.css({ opacity:0 })
+								.fadeIn({
+									onEnd:function(){
+										t.t(true);
+									}
+								})
+							;
+						}
+					]
+				);
+				doh.run();
+			});
+		</script>
+	<body>
+		<div id="bar"></div>
+	</body>
+</html>
