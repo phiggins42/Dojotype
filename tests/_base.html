@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+	"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<title>Testing dojo.fx</title>
+		<script type="text/javascript" src="../../dojo/dojo.js" djConfig="isDebug: true"></script>
+		<script type="text/javascript" src="../_base.js"></script>
+		<script type="text/javascript">
+			dojo.require("doh.runner");
+
+			dojo.addOnLoad(function(){
+				doh.register("t", 
+					[
+					
+						// string tests
+						function trim(t){
+							t.is("hello", "    hello      ".trim());
+							t.is("hello", "hello   ".trim());
+							t.is("hello", "     hello".trim());
+						},
+						
+						function has(t){
+							t.t("foo".has("foo"));
+							t.t("hello world".has("world"));
+						},
+						
+						// function tests
+						function bind(t){
+							
+							
+							
+							
+						},
+						
+						// array tests
+						function foreach(t){
+							var c = 0;
+							var ar = [0,1,2,3];
+							
+								ar.forEach(function(item, idx){
+									c++;
+									t.is(item, idx);
+								});
+								
+							t.is(4, ar.length);
+							t.is(4, c);
+						},
+						
+						function map(t){
+							var x = [1,2,3,4].map(function(item){
+								return item * 2;
+							});
+							t.is(4, x.length);
+							t.is(2, x[0]);
+							t.is(8, x[3]);
+							
+						}
+					]
+				);
+				doh.run();
+			});
+		</script>
+	<body>
+	</body>
+</html>
