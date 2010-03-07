@@ -41,8 +41,7 @@ dojo.require("dojo.string");
 		
 		//>>excludeStart("templated", kwArgs.includeTemplates == "on")
 		template: function(obj){
-			this.innerHTML = d.string.substitute(this.innerHTML, obj);
-			return this;
+			return d.replace(this, obj);
 		},
 		//>>excludeEnd("templated");
 		

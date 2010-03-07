@@ -15,6 +15,12 @@ dojo.provide("dojotype._base.Array");
 		},
 		indexOf: function(item, something){
 			return d.indexOf(this, item, something);
+		},
+		max: function(){
+		    return Math.max.apply(Math, this);
+		},
+		min: function(){
+		    return Math.min.apply(Math, this);
 		}
 	});
 

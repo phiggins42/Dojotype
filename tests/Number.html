@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+	"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<title>Testing dojo.fx</title>
+		<script type="text/javascript" src="../../dojo/dojo.js" djConfig="isDebug: true"></script>
+		<script type="text/javascript" src="../base.js"></script>
+		<script type="text/javascript">
+			dojo.require("doh.runner");
+
+			dojo.addOnLoad(function(){
+
+				doh.register("t", 
+					[
+						function normalInt(t){
+							var x = 10;
+							t.is(x.pow(2), 100);
+							t.is((9).sqrt(), 3);
+						},
+						
+						function funky(t){
+							var x = 5;
+							var y = x.sqrt().pow(2).cos();
+							t.t(true);
+						},
+						
+						function chained(t){
+							var x = 10;
+							var y = x.pow(2).sqrt();
+							t.is(x, y);
+						},
+						
+						function floated(t){
+							var x = 3.14;
+							t.is(x.pow(2), Math.pow(x, 2));
+						}
+					]
+				);
+				
+				var autoTests = [];
+				dojo.forEach([
+					"abs", "acos", "asin", "atan", "atan2", "ceil", "cos", "exp", "floor", "log", 
+					"max", "min", "pow", /* "random", "round", */ "sin", "sqrt", "tan"
+				], function(meth){
+					autoTests.push({
+						name:"auto-" + meth,
+						runTest: function(t){
+							var x = 10;
+							t.is(x[meth](), Math[meth](x));
+						}
+					});
+				});
+				doh.register("auto", autoTests);
+				
+				doh.run();
+			});
+		</script>
+	<body>
+		<div id="bar"></div>
+	</body>
+</html>
