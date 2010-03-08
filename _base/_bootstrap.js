@@ -1,4 +1,4 @@
-dojo.provide("dojotype._base.bootstrap");
+dojo.provide("dojotype._base._bootstrap");
 
 dojo._clobber = function(proto, props, force){
 	// summary: Clobber a native prototype with a new version of a function. Rock it.
@@ -21,4 +21,13 @@ dojo._clobber = function(proto, props, force){
 			proto[method] = props[method];
 		}
 	}
+};
+
+dojo._prep = function(/* Anything */item, /* Array? */ar){
+	// summary: Place `item` at the beginning of `ar` and return 
+	//		the new array (as an alternative to calling push())
+	//		on an array in place and manually creating it.
+	var x = [item];
+	[].push.apply(x, ar || []);
+	return x;
 };

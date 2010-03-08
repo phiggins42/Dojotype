@@ -6,19 +6,22 @@ dojo.provide("dojotype._base.Number");
 		// summary: A series of prototype-extending Number functions.
 		// description:
 		//		All the Math.* functions available in stock JavaScript
-		//		applied to the Number prototype. Unfortunately, the 
-		//		syntax would be weird/bad/confusing:
+		//		applied to the Number prototype. There are a few caveats
+		//		with regard to syntax that may be undesirable.
 		//	
 		// example:
-		//	|	var x = 10; x = (x).pow(2); // x == 100
+		//	|	var x = 10; x = x.pow(2); // x == 100
 		//
 		// example:
-		//	|	var x = 10; (x).pow(2).sqrt(); // 10
+		//	|	var x = 10; x = x.pow(2).sqrt(); // x == 10
 		//	|	// which is clearly more readable than:
 		//	|	var x = 10; x = Math.sqrt(Math.pow(x, 2)) // x == 10;
-		//	|	// alternately, can be written as:
+		//	|	// alternately, can be written as: [but who would?]
 		//	|	var x = 10; x = x["pow"](2)["sqrt"](); // x == 10
-		
+		//
+		// example:
+		//	|	// this will NOT work!
+		//	|	var y = 10.pow(2); // y == #FAIL
 	}
 
 =====*/
@@ -36,20 +39,14 @@ dojo.provide("dojotype._base.Number");
 		function(meth){
 			// setup the function in place if it doesn't exist 
 			// for some reason
-			if(!this[meth]){
+			if(!this[meth] && maff[meth]){
 				this[meth] = function(param){
-					var args = [this];
 					// if we have at least one extra param, take the whole thing:
-					param && ap.push.apply(args, arguments);
-					return maff[meth].apply(maff, args)
-				}
+					return maff[meth].apply(maff, param ? d._prep(this, arguments) : [this]);
+				};
 			}
 		},
 		np // context
 	);
 	
-	d._clobber(np,{
-		
-	});
-
 })(dojo);

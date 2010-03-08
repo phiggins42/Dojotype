@@ -1,21 +1,31 @@
 dojo.provide("dojotype._base.Array");
-
 (function(d){
 
-	// Array Magic
+	// base Array Magic
+	d.forEach(
+		["forEach", "map", "every", "indexOf", "some", "filter"],
+		//
+		// any function which accept an array in the first position
+		// can be mapped in this way. all syntax regarding these functions 
+		// is: 
+		// [1,2,3].forEach(callback, context)
+		// versus
+		// dojo.forEach([1,2,3], callback, context);
+		// where the array itself is curried into the first position
+		//
+		function(meth){
+			if(!this[meth]){
+				// setup the prototype function for `meth`
+				this[meth] = function(){
+					return d[meth].apply(d, d._prep(this, arguments));
+				};
+			}
+		},
+		Array.prototype // context
+	);
+
+	// Additional Array Magic
 	d._clobber(Array.prototype, {
-		forEach: function(fn, thisObj){
-			return d.forEach(this, fn, thisObj)
-		},
-		map: function(fn, thisObj){
-			return d.map(this, fn, thisObj);
-		},
-		every: function(fn, thisObj){
-			return d.every(this, fn, thisObj);
-		},
-		indexOf: function(item, something){
-			return d.indexOf(this, item, something);
-		},
 		max: function(){
 		    return Math.max.apply(Math, this);
 		},
