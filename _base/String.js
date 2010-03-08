@@ -1,7 +1,7 @@
 dojo.provide("dojotype._base.String");
-//>>excludeStart("templated", kwArgs.includeTemplates == "on")
+//>>excludeStart("templated", kwArgs.includeTemplates)
 dojo.require("dojo.string");
-//>>excludeStop("templated");
+//>>excludeEnd("templated");
 ;(function(d){
 
 	// String magic
@@ -39,7 +39,7 @@ dojo.require("dojo.string");
 			
 		},
 		
-		//>>excludeStart("templated", kwArgs.includeTemplates == "on")
+		//>>excludeStart("templated", kwArgs.includeTemplates)
 		template: function(obj){
 			return d.replace(this, obj);
 		},
