@@ -55,6 +55,32 @@
 								x++;
 							});
 							t.is(10, x);
+							
+							var obj = {
+							    c:0,
+							    inc: function(){
+							        this.c++;
+							    }
+							};
+							
+							(10).times(obj, "inc");
+							t.is(obj.c, 10);
+							
+							var y = 0;
+							(10).times(obj, function(inc){
+							    this.c++;
+							    y = inc;
+							})
+							t.is(obj.c, 20);
+							t.is(9, y);
+							
+							var yy = 0;
+							(3).times(obj, function(a, b, c, inc){
+							    t.is(10, a);
+							    t.is(20, b);
+							    t.is(30, c);
+							    t.is(yy++, inc);
+							}, 10, 20, 30);
 						}
 					]
 				);
