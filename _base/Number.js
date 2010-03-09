@@ -49,4 +49,56 @@ dojo.provide("dojotype._base.Number");
 		np // context
 	);
 	
+	d._clobber(np, {
+		
+		times: function(fn, method){
+			// summary: executes a function passed in the number of specified times
+			// description:
+			//		executes a function passed in the number of specified times.
+			//		follows the dojo.hitch API, allowing a combination of arguments
+			//		to locate a method. All arguments passed to `times` are curried
+			//		onto the callback function, again, just like `hitch`.
+			//	
+			//		additionally, the index is passed to the callback function in the
+			//		LAST position beyond any potentially curried arguments.
+			//
+			// fn: Object|Function
+			//		A scope to set (if method present), or the function to call.
+			//
+			// method: String|Function?
+			//		If `fn` is a scope and this arg is present, combine these via hitch()
+			//		if method is a string, it equates to fn[method](). if method is a function
+			//		it is simply executed in the scope of `fn`.
+			//
+			// example:
+			//	|	// call some function four times.
+			//	|	(4).times(someFunc);
+			// example:
+			//	|	// call obj.method() 5 times:
+			//	|	(5).times(obj, "method");
+			// example:
+			//	|	// call anonymous function in scope of foo 7 times
+			//	|	(7).times(foo, function(index){ doit(this, index); })
+			//
+			var cb = d.hitch.apply(d, arguments);
+			for(var i = 0; i < this; i++){ cb(i); }
+			return this; // Number
+		},
+		
+		limit: function(min, max){
+			// summary: Limit this number to a range of numbers.
+			// min: Number
+			//		the minimum possible value
+			// max: Number
+			//		the maximum possible value
+			//
+			var ret;
+			if(this < min) ret = min;
+			else if(this > max) ret = max;
+			else ret = this;
+			return ret;
+		}
+		
+	});
+	
 })(dojo);

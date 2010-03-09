@@ -33,6 +33,28 @@
 						function floated(t){
 							var x = 3.14;
 							t.is(x.pow(2), Math.pow(x, 2));
+						},
+						
+						function limit(t){
+
+							var a = 12, b = -4, c = 4.3;
+							var al = a.limit(2, 6.5),
+								bl = b.limit(2, 6.5),
+								cl = c.limit(2, 6.5);
+								
+							t.is(6.5, al);
+							t.is(2, bl);
+							t.is(4.3, cl);
+							
+							
+						},
+						
+						function times(t){
+							var x = 0;
+							(10).times(function(i){
+								x++;
+							});
+							t.is(10, x);
 						}
 					]
 				);
