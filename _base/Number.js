@@ -1,8 +1,8 @@
 dojo.provide("dojotype._base.Number");
 (function(d){
-/*=====
-
-	dojo.Number = function(){
+	/*=====
+	
+	dojotype.Number = function(){
 		// summary: A series of prototype-extending Number functions.
 		// description:
 		//		All the Math.* functions available in stock JavaScript
@@ -20,13 +20,11 @@ dojo.provide("dojotype._base.Number");
 		//	|	var x = 10; x = x["pow"](2)["sqrt"](); // x == 10
 		//
 		// example:
-		//	|	// this will NOT work!
+		//	|	// this will NOT work! (10).pow(2) will, however.
 		//	|	var y = 10.pow(2); // y == #FAIL
-	}
-
-=====*/
-
-	// combining math and number
+	};
+	
+	=====*/
 	
 	var maff = Math, ap = Array.prototype, np = Number.prototype;
 	d.forEach(
