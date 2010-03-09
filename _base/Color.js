@@ -21,7 +21,7 @@ dojo.provide("dojotype._base.Color");
 	=====*/
 	
 	// one color instance to use for conversions
-	var c = new dojo.Color(),
+	var c = new d.Color(),
 		setup = function(meth){
 			if(!this[meth]){
 				this[meth] = function(){
@@ -32,7 +32,7 @@ dojo.provide("dojotype._base.Color");
 		}
 	;
 	
-	dojo.forEach(["toRgb", "toRgba", "toHex"], setup, String.prototype);
-	dojo.forEach(["toCss"], setup, Array.prototype);
+	d.forEach(["toRgb", "toRgba", "toHex"], setup, String.prototype);
+	d.forEach(["toCss"], setup, Array.prototype);
 	
 })(dojo);
