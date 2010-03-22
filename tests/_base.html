@@ -22,63 +22,6 @@
 						function has(t){
 							t.t("foo".has("foo"));
 							t.t("hello world".has("world"));
-						},
-						
-						// function tests
-						function bind(t){
-							
-							
-							
-							
-						},
-						
-						// array tests
-						function foreach(t){
-							var c = 0;
-							var ar = [0,1,2,3];
-							
-								ar.forEach(function(item, idx){
-									c++;
-									t.is(item, idx);
-								});
-								
-							t.is(4, ar.length);
-							t.is(4, c);
-						},
-						
-						function map(t){
-							var x = [1,2,3,4].map(function(item){
-								return item * 2;
-							});
-							t.is(4, x.length);
-							t.is(2, x[0]);
-							t.is(8, x[3]);
-							
-						},
-						
-						function minMax(t){
-							
-							var ar = [1,2,3,4,5];
-							var max = ar.max();
-							var min = ar.min();
-							
-							t.is(1, min);
-							t.is(5, max);
-							
-						},
-						
-						function wonkyMax(t){
-							var ar = ["1", 2, 3];
-							t.is(1, ar.min());
-						},
-						
-						function maxminWithAlphaString(t){
-							// one would suspect this to fail, so know it.
-							var ar = [1, "a", 2, 3, 4, 5, "6", 7];
-							var max = ar.max();
-							var min = ar.min();
-							t.t(isNaN(min));
-							t.t(isNaN(max));
 						}
 						
 					]

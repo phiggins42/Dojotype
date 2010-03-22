@@ -4,12 +4,16 @@ dojo.provide("dojotype._base.Color");
 	
 	dojotype.Color = function(){
 		// summary: 
-		//		A class which adds color-conversion capability to 
-		//		strings and arrays. An array of length 4 or 3 can be converted
+		//		A module which adds color-conversion capability to 
+		//		strings and arrays. 
+		//
+		// description: 
+		//		A module which adds color-conversion capability to 
+		//		string and arrays. An array of length 4 or 3 can be converted
 		//		to a string and vice versa, from their native prototypes.
 		//		
 		//		See `dojo.Color` for the available methods and appropriate documentation.
-		//		
+		//
 		// example:
 		//	[255, 255, 255].toCss(); // returns "#000000"
 		//
@@ -33,7 +37,6 @@ dojo.provide("dojotype._base.Color");
 	
 	d.forEach(["toRgb", "toRgba", "toHex"], setup, String.prototype);
 	d.forEach(["toCss"], setup, Array.prototype);
-	
 	// TODO: write unit tests
 	
 })(dojo);

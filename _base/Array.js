@@ -23,7 +23,7 @@ dojo.provide("dojotype._base.Array");
 
 	// base Array Magic
 	d.forEach(
-		["forEach", "map", "every", "indexOf", "lastIndexOf", "some", "filter"],
+		["forEach", "every", "some", "indexOf", "lastIndexOf", "filter", "map"],
 		//
 		// any function which accept an array in the first position
 		// can be mapped in this way. all syntax regarding these functions 
@@ -45,13 +45,55 @@ dojo.provide("dojotype._base.Array");
 	);
 
 	// Additional Array Magic
+	var m = Math, rnd = function(ar){
+		return ar[m.floor(m.random() * ar.length)];
+	};
+	
 	d._clobber(Array.prototype, {
+		
 		max: function(){
-		    return Math.max.apply(Math, this);
+		    return m.max.apply(m, this);
 		},
+		
 		min: function(){
-		    return Math.min.apply(Math, this);
+		    return m.min.apply(m, this);
+		},
+		
+		random: function(count){
+			// summary: Pulls a random element (optionally elements) from this list.
+			//
+			// count: Integer
+			//		If passed, this number of random items are returned
+			//		If omitted (or a falsy value), a single random item is returned.
+			//
+			// example:
+			//	Just pluck a random element from an Array:
+			//	|	switch([1,2,3].random()){
+			//	|		case 1: break; case 2: break; default: break;
+			//	|	}
+			//
+			// example:
+			//	An indexOf test is done for duplicate items in the random array return.
+			//	|	[1,2,1].random(2); // will never be [1,1]
+	
+			var ret;
+			if(count && count <= this.length){
+				ret = [];
+				for(; ret.length < count;){
+					var c = rnd(this);
+					if(ret.indexOf(c) < 0) ret.push(c);
+				}
+			}else{
+				ret = rnd(this);
+			}
+			return ret; 
+		},
+		
+		randomize: function(inplace){
+			// summary: 
+			//		Randomize this array. 
 		}
+		
 	});
 
 })(dojo);

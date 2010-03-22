@@ -23,11 +23,11 @@ dojo._clobber = function(proto, props, force){
 	}
 };
 
-dojo._prep = function(/* Anything */item, /* Array? */ar){
+dojo._prep = function(/* AnythingButAString */item, /* Array? */ar){
 	// summary: Place `item` at the beginning of `ar` and return 
 	//		the new array (as an alternative to calling push())
 	//		on an array in place and manually creating it.
-	var x = [item];
+	var x = dojo.isArrayLike(item) ? item : [item];
 	[].push.apply(x, ar || []);
 	return x;
 };
