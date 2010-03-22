@@ -1,4 +1,4 @@
-dojo.provide("dojotype._base.Date");
+dojo.provide("dojotype.Date");
 //
 //	summary: Adds additional Date support to Date and String objects.
 //
