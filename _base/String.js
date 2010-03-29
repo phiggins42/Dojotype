@@ -47,7 +47,10 @@ dojo.provide("dojotype._base.String");
 		blink: function(){
 			// summary: Make it blink, if injected into HTML
 			// refs: http://msdn.microsoft.com/en-us/library/ff520797%28VS.85%29.aspx
-			return ["<blink>", this, "</blink>"].join("");
+			
+			//return ["<blink>", this, "</blink>"].join("");
+			// or?
+			return "<blink>" + this + "</blink>";
 		}
 	});
 
