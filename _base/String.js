@@ -8,7 +8,7 @@ dojo.provide("dojotype._base.String");
 			// summary: Remove all whitespace around this string
 			// 
 			// example:
-			// 	| >>> var clean = "  one two three    ".trim();
+			//	| >>> var clean = "	 one two three	  ".trim();
 			//	| >>> "one two three"
 			
 			return d.trim(this); // String
@@ -42,6 +42,12 @@ dojo.provide("dojotype._base.String");
 		
 		pad:function(n){
 			
+		},
+		
+		blink: function(){
+			// summary: Make it blink, if injected into HTML
+			// refs: http://msdn.microsoft.com/en-us/library/ff520797%28VS.85%29.aspx
+			return ["<blink>", this, "</blink>"].join("");
 		}
 	});
 
