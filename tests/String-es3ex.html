@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+	"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<title>Testing dojo.fx</title>
+		<script type="text/javascript" src="../../dojo/dojo.js" djConfig="isDebug: true"></script>
+		<script type="text/javascript" src="../base.js"></script>
+		<script type="text/javascript">
+			dojo.require("dojotype.es3ex-String");
+			dojo.require("doh.runner");
+
+			dojo.addOnLoad(function(){
+
+				doh.register("t", 
+					[
+						function omg(t){
+							var x = "text";
+							var y = x.link("foo.html");
+							t.is("text".link("foo.html"), '<a href="foo.html">text</a>')
+						},
+						
+						function basic(t){
+							t.is("<b>bold</b>", "bold".bold());
+						},
+						
+						function transform(t){
+							t.is("<tt>ugh</tt>", "ugh".fixed());
+						},
+						
+						function wrap(t){
+							var x = "test"._wrap("tag", "key", "value", "key2", "value2");
+							t.is('<tag key="value" key2="value2">test</tag>', x);
+						}
+					
+					]
+				);
+				
+				doh.run();
+			});
+		</script>
+	<body>
+		<div id="bar"></div>
+	</body>
+</html>
